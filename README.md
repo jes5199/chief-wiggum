@@ -30,7 +30,10 @@ The plugin includes a skill file that recognizes these phrases and automatically
 
 ```
 /plugin marketplace add jes5199/chief-wiggum
+/plugin install chief-wiggum
 ```
+
+Then restart Claude Code to load the plugin.
 
 ## What is Ralph Wiggum?
 
