@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Chief Loop Setup Script
-# Creates state file for in-session Chief loop
+# Wiggum Loop Setup Script
+# Creates state file for in-session Wiggum loop
 
 set -euo pipefail
 
@@ -15,10 +15,10 @@ while [[ $# -gt 0 ]]; do
   case $1 in
     -h|--help)
       cat << 'HELP_EOF'
-Chief Loop - Interactive self-referential development loop
+Wiggum Loop - Interactive self-referential development loop
 
 USAGE:
-  /chief-loop [PROMPT...] [OPTIONS]
+  /wiggum-loop [PROMPT...] [OPTIONS]
 
 ARGUMENTS:
   PROMPT...    Initial prompt to start the loop (can be multiple words without quotes)
@@ -29,7 +29,7 @@ OPTIONS:
   -h, --help                     Show this help message
 
 DESCRIPTION:
-  Starts a Chief Wiggum loop in your CURRENT session. The stop hook prevents
+  Starts a Wiggum loop in your CURRENT session. The stop hook prevents
   exit and feeds your output back as input until completion or iteration limit.
 
   To signal completion, you must output: <promise>YOUR_PHRASE</promise>
@@ -40,21 +40,21 @@ DESCRIPTION:
   - Learning how the technique works
 
 EXAMPLES:
-  /chief-loop Build a todo API --completion-promise 'DONE' --max-iterations 20
-  /chief-loop --max-iterations 10 Fix the auth bug
-  /chief-loop Refactor cache layer  (runs forever)
-  /chief-loop --completion-promise 'TASK COMPLETE' Create a REST API
+  /wiggum-loop Build a todo API --completion-promise 'DONE' --max-iterations 20
+  /wiggum-loop --max-iterations 10 Fix the auth bug
+  /wiggum-loop Refactor cache layer  (runs forever)
+  /wiggum-loop --completion-promise 'TASK COMPLETE' Create a REST API
 
 STOPPING:
   Only by reaching --max-iterations or detecting --completion-promise
-  No manual stop - Chief runs infinitely by default!
+  No manual stop - the loop runs infinitely by default!
 
 MONITORING:
   # View current iteration:
-  grep '^iteration:' .claude/chief-loop.local.md
+  grep '^iteration:' .claude/wiggum-loop.local.md
 
   # View full state:
-  head -10 .claude/chief-loop.local.md
+  head -10 .claude/wiggum-loop.local.md
 HELP_EOF
       exit 0
       ;;
@@ -116,14 +116,14 @@ PROMPT="${PROMPT_PARTS[*]}"
 if [[ -z "$PROMPT" ]]; then
   echo "Error: No prompt provided" >&2
   echo "" >&2
-  echo "   Chief needs a task description to work on." >&2
+  echo "   Wiggum needs a task description to work on." >&2
   echo "" >&2
   echo "   Examples:" >&2
-  echo "     /chief-loop Build a REST API for todos" >&2
-  echo "     /chief-loop Fix the auth bug --max-iterations 20" >&2
-  echo "     /chief-loop --completion-promise 'DONE' Refactor code" >&2
+  echo "     /wiggum-loop Build a REST API for todos" >&2
+  echo "     /wiggum-loop Fix the auth bug --max-iterations 20" >&2
+  echo "     /wiggum-loop --completion-promise 'DONE' Refactor code" >&2
   echo "" >&2
-  echo "   For all options: /chief-loop --help" >&2
+  echo "   For all options: /wiggum-loop --help" >&2
   exit 1
 fi
 
@@ -137,7 +137,7 @@ else
   COMPLETION_PROMISE_YAML="null"
 fi
 
-cat > .claude/chief-loop.local.md <<EOF
+cat > .claude/wiggum-loop.local.md <<EOF
 ---
 active: true
 iteration: 1
@@ -151,7 +151,7 @@ EOF
 
 # Output setup message
 cat <<EOF
-Chief loop activated in this session!
+Wiggum loop activated in this session!
 
 Iteration: 1
 Max iterations: $(if [[ $MAX_ITERATIONS -gt 0 ]]; then echo $MAX_ITERATIONS; else echo "unlimited"; fi)
@@ -161,7 +161,7 @@ The stop hook is now active. When you try to exit, the SAME PROMPT will be
 fed back to you. You'll see your previous work in files, creating a
 self-referential loop where you iteratively improve on the same task.
 
-To monitor: head -10 .claude/chief-loop.local.md
+To monitor: head -10 .claude/wiggum-loop.local.md
 
 WARNING: This loop cannot be stopped manually! It will run infinitely
     unless you set --max-iterations or --completion-promise.
@@ -178,7 +178,7 @@ fi
 if [[ "$COMPLETION_PROMISE" != "null" ]]; then
   echo ""
   echo "======================================================="
-  echo "CRITICAL - Chief Loop Completion Promise"
+  echo "CRITICAL - Wiggum Loop Completion Promise"
   echo "======================================================="
   echo ""
   echo "To complete this loop, output this EXACT text:"

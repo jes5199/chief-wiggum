@@ -1,14 +1,14 @@
 ---
-description: "Start self-referential development loop for iterative tasks. Use when user asks to 'chief wiggum', 'wiggum it', 'run in a loop until done', or wants iterative development with automatic self-correction."
+description: "Start self-referential development loop for iterative tasks. Use when user asks to 'wiggum this', 'wiggum it', 'run in a loop until done', or wants iterative development with automatic self-correction."
 ---
 
-# Chief Wiggum Loop
+# Wiggum Loop
 
 The user wants to run a task in a self-referential loop where you iterate until completion.
 
 ## When to use this
 
-- User says "chief wiggum this", "wiggum it", "ralph it"
+- User says "wiggum this", "wiggum it", "ralph it"
 - User wants you to "keep trying until it works"
 - User asks for iterative development with self-correction
 - User wants to "run in a loop" until a task is complete
@@ -16,10 +16,10 @@ The user wants to run a task in a self-referential loop where you iterate until 
 
 ## How to start the loop
 
-Run the `/chief-loop` command with the user's task:
+Run the `/wiggum-loop` command with the user's task:
 
 ```
-/chief-loop "<TASK DESCRIPTION>" --completion-promise "<SUCCESS_CRITERIA>" --max-iterations <N>
+/wiggum-loop "<TASK DESCRIPTION>" --completion-promise "<SUCCESS_CRITERIA>" --max-iterations <N>
 ```
 
 ### Constructing the command
@@ -30,19 +30,19 @@ Run the `/chief-loop` command with the user's task:
 
 ### Examples
 
-User: "Chief wiggum adding tests until they all pass"
+User: "Wiggum adding tests until they all pass"
 ```
-/chief-loop "Add comprehensive tests for the authentication module. Run tests after each change." --completion-promise "All tests passing" --max-iterations 30
+/wiggum-loop "Add comprehensive tests for the authentication module. Run tests after each change." --completion-promise "All tests passing" --max-iterations 30
 ```
 
 User: "Wiggum it - fix the build errors"
 ```
-/chief-loop "Fix all build errors. Run the build after each fix attempt." --completion-promise "Build successful" --max-iterations 20
+/wiggum-loop "Fix all build errors. Run the build after each fix attempt." --completion-promise "Build successful" --max-iterations 20
 ```
 
 User: "Keep trying to implement this feature until it works"
 ```
-/chief-loop "Implement the user dashboard feature with charts and data tables. Test manually after each iteration." --completion-promise "Feature complete and working" --max-iterations 40
+/wiggum-loop "Implement the user dashboard feature with charts and data tables. Test manually after each iteration." --completion-promise "Feature complete and working" --max-iterations 40
 ```
 
 ## Important notes

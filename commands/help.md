@@ -1,5 +1,5 @@
 ---
-description: "Explain Chief Wiggum technique and available commands"
+description: "Explain Wiggum technique and available commands"
 ---
 
 # Chief Wiggum Plugin Help
@@ -31,14 +31,14 @@ The technique is described as "deterministically bad in an undeterministic world
 
 ## Available Commands
 
-### /chief-loop <PROMPT> [OPTIONS]
+### /wiggum-loop <PROMPT> [OPTIONS]
 
-Start a Chief loop in your current session.
+Start a Wiggum loop in your current session.
 
 **Usage:**
 ```
-/chief-loop "Refactor the cache layer" --max-iterations 20
-/chief-loop "Add tests" --completion-promise "TESTS COMPLETE"
+/wiggum-loop "Refactor the cache layer" --max-iterations 20
+/wiggum-loop "Add tests" --completion-promise "TESTS COMPLETE"
 ```
 
 **Options:**
@@ -46,7 +46,7 @@ Start a Chief loop in your current session.
 - `--completion-promise <text>` - Promise phrase to signal completion
 
 **How it works:**
-1. Creates `.claude/.chief-loop.local.md` state file
+1. Creates `.claude/wiggum-loop.local.md` state file
 2. You work on the task
 3. When you try to exit, stop hook intercepts
 4. Same prompt fed back
@@ -55,18 +55,18 @@ Start a Chief loop in your current session.
 
 ---
 
-### /cancel-chief
+### /cancel-wiggum
 
-Cancel an active Chief loop (removes the loop state file).
+Cancel an active Wiggum loop (removes the loop state file).
 
 **Usage:**
 ```
-/cancel-chief
+/cancel-wiggum
 ```
 
 **How it works:**
 - Checks for active loop state file
-- Removes `.claude/.chief-loop.local.md`
+- Removes `.claude/wiggum-loop.local.md`
 - Reports cancellation with iteration count
 
 ---
@@ -81,7 +81,7 @@ To signal completion, Claude must output a `<promise>` tag:
 <promise>TASK COMPLETE</promise>
 ```
 
-The stop hook looks for this specific tag. Without it (or `--max-iterations`), Chief runs infinitely.
+The stop hook looks for this specific tag. Without it (or `--max-iterations`), the loop runs infinitely.
 
 ### Self-Reference Mechanism
 
@@ -96,17 +96,17 @@ The "loop" doesn't mean Claude talks to itself. It means:
 ### Interactive Bug Fix
 
 ```
-/chief-loop "Fix the token refresh logic in auth.ts. Output <promise>FIXED</promise> when all tests pass." --completion-promise "FIXED" --max-iterations 10
+/wiggum-loop "Fix the token refresh logic in auth.ts. Output <promise>FIXED</promise> when all tests pass." --completion-promise "FIXED" --max-iterations 10
 ```
 
-You'll see Chief:
+You'll see the loop:
 - Attempt fixes
 - Run tests
 - See failures
 - Iterate on solution
 - In your current session
 
-## When to Use Chief
+## When to Use Wiggum Loop
 
 **Good for:**
 - Well-defined tasks with clear success criteria
