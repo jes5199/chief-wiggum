@@ -1,5 +1,7 @@
 # Chief Wiggum Plugin
 
+![Chief Wiggum iterating on code](assets/banner.png)
+
 A fork of the [ralph-wiggum](https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum) plugin for Claude Code, implementing self-referential AI development loops.
 
 ## Why This Fork?
