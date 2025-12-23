@@ -10,10 +10,11 @@ This fork exists for two reasons:
 
 ### 1. Bug Fixes
 
-Includes fixes from [PR #12642](https://github.com/anthropics/claude-code/pull/12642) that resolve issues with the original plugin:
-- Multi-line bash commands in slash commands were blocked by security checks
-- Permission check bug with auto-execute syntax
-- Completion promise display logic moved to setup script for reliability
+Includes fixes from [PR #12642](https://github.com/anthropics/claude-code/pull/12642):
+- Slash commands failed due to multi-line bash being blocked by security checks
+- Permission check bug with ` ```! ` auto-execute syntax
+
+Also adds clearer documentation that completion promises must be wrapped in `<promise>` XML tags.
 
 ### 2. Natural Language Invocation
 
