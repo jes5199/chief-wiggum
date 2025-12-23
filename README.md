@@ -26,6 +26,12 @@ You can start a Wiggum loop just by asking Claude naturally:
 
 The plugin includes a skill file that recognizes these phrases and automatically starts an appropriate loop with sensible defaults.
 
+## Installation
+
+```
+/plugin marketplace add jes5199/chief-wiggum
+```
+
 ## What is Ralph Wiggum?
 
 The Ralph Wiggum technique is an iterative development methodology based on continuous AI loops, pioneered by [Geoffrey Huntley](https://ghuntley.com/ralph/).
