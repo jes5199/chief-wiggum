@@ -113,5 +113,6 @@ This prevents infinite loops on impossible tasks.
 
 ## Learn More
 
+- Original plugin: [ralph-wiggum](https://github.com/anthropics/claude-code-plugins/tree/main/plugins/ralph-wiggum) (Anthropic's official version)
 - Original technique: https://ghuntley.com/ralph/
 - Ralph Orchestrator: https://github.com/mikeyobrien/ralph-orchestrator
