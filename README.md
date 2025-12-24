@@ -35,6 +35,8 @@ The plugin includes a skill file that recognizes these phrases and automatically
 
 Then restart Claude Code to load the plugin.
 
+**Note:** The Claude Code plugin interface can be buggy. If the above commands don't work, ask Claude to directly edit your config files to install or uninstall the plugin.
+
 ## What is Ralph Wiggum?
 
 The Ralph Wiggum technique is an iterative development methodology based on continuous AI loops, pioneered by [Geoffrey Huntley](https://ghuntley.com/ralph/).
