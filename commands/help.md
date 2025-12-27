@@ -37,13 +37,15 @@ Start a Wiggum loop in your current session.
 
 **Usage:**
 ```
-/wiggum-loop "Refactor the cache layer" --max-iterations 20
-/wiggum-loop "Add tests" --completion-promise "TESTS COMPLETE"
+/wiggum-loop "Refactor the cache layer" --completion-promise "REFACTOR DONE" --max-iterations 15
+/wiggum-loop "Add tests until passing" --completion-promise "TESTS COMPLETE" --max-iterations 10
 ```
 
 **Options:**
-- `--max-iterations <n>` - Max iterations before auto-stop
-- `--completion-promise <text>` - Promise phrase to signal completion
+- `--completion-promise <text>` - Promise phrase to signal completion (HIGHLY ENCOURAGED)
+- `--max-iterations <n>` - Max iterations before auto-stop (HIGHLY ENCOURAGED)
+
+**IMPORTANT:** Always specify BOTH options. A reasonable default for max iterations is 10-20. Loops without these safeguards can run indefinitely.
 
 **How it works:**
 1. Creates `.claude/wiggum-loop.local.md` state file
@@ -81,7 +83,7 @@ To signal completion, Claude must output a `<promise>` tag:
 <promise>TASK COMPLETE</promise>
 ```
 
-The stop hook looks for this specific tag. Without it (or `--max-iterations`), the loop runs infinitely.
+The stop hook looks for this specific tag. **Always use BOTH a completion promise AND max iterations** to prevent infinite loops. Use 10-20 as a reasonable default iteration count.
 
 ### Self-Reference Mechanism
 

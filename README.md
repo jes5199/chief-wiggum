@@ -48,7 +48,7 @@ This plugin implements Ralph using a **Stop hook** that intercepts Claude's exit
 ## Quick Start
 
 ```bash
-/wiggum-loop "Build a REST API for todos. Requirements: CRUD operations, input validation, tests. Output <promise>COMPLETE</promise> when done." --completion-promise "COMPLETE" --max-iterations 50
+/wiggum-loop "Build a REST API for todos. Requirements: CRUD operations, input validation, tests. Output <promise>COMPLETE</promise> when done." --completion-promise "COMPLETE" --max-iterations 15
 ```
 
 Or just ask naturally:
@@ -66,8 +66,10 @@ Start a loop in your current session.
 ```
 
 **Options:**
-- `--max-iterations <n>` - Stop after N iterations (default: unlimited)
-- `--completion-promise <text>` - Phrase that signals completion
+- `--completion-promise <text>` - Phrase that signals completion (HIGHLY ENCOURAGED)
+- `--max-iterations <n>` - Stop after N iterations (HIGHLY ENCOURAGED, recommend 10-20)
+
+**IMPORTANT:** Always specify BOTH options to prevent infinite loops.
 
 ### /cancel-wiggum
 
@@ -85,7 +87,7 @@ To signal completion, output a `<promise>` tag with the exact text specified:
 <promise>COMPLETE</promise>
 ```
 
-The stop hook detects this tag and ends the loop. Without it (or `--max-iterations`), the loop runs indefinitely.
+The stop hook detects this tag and ends the loop. Always use both a completion promise AND `--max-iterations` (recommend 10-20) to prevent infinite loops.
 
 ## Best Practices
 
@@ -101,13 +103,13 @@ When complete:
 - Output: <promise>COMPLETE</promise>
 ```
 
-### Always Set Max Iterations
+### Always Set Both Safeguards
 
 ```bash
-/wiggum-loop "Try to implement feature X" --max-iterations 20
+/wiggum-loop "Try to implement feature X" --completion-promise "FEATURE COMPLETE" --max-iterations 15
 ```
 
-This prevents infinite loops on impossible tasks.
+Always specify both `--completion-promise` and `--max-iterations` (recommend 10-20). This prevents infinite loops on impossible tasks.
 
 ## When to Use
 
