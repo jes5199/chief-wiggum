@@ -17,6 +17,11 @@ Execute the above command using Bash, then work on the task. When you try to exi
 
 **IMPORTANT:** Always specify BOTH `--completion-promise` AND `--max-iterations`. Loops without these safeguards can run indefinitely. A reasonable default for max iterations is 10-20 (10 for simple tasks, 20 for complex ones).
 
+**WARNING: Use explicit flag syntax.** The script does NOT parse natural language. Writing `20 READY TO MERGE` will NOT set max_iterations to 20 - it will be treated as literal prompt text. You MUST use:
+```
+--max-iterations 20 --completion-promise "READY TO MERGE"
+```
+
 CRITICAL RULE: If a completion promise is set, you may ONLY output it when the statement is completely and unequivocally TRUE. Do not output false promises to escape the loop, even if you think you're stuck or should exit for other reasons. The loop is designed to continue until genuine completion.
 
 FORMAT REQUIREMENT: To signal completion, wrap the promise in `<promise>` tags. For example, if the completion promise is "DONE", output:

@@ -30,6 +30,14 @@ Run the `/wiggum-loop` command with the user's task:
 2. **Completion promise**: Define what "done" means - a true statement when complete (REQUIRED)
 3. **Max iterations**: Use 10-20 as a reasonable default; adjust based on task complexity (REQUIRED)
 
+**WARNING: Use explicit flag syntax, not natural language.** The script does NOT parse natural language into flags.
+
+❌ WRONG: `/wiggum-loop "Fix bugs" 20 READY TO MERGE`
+→ This sets max_iterations: 0, completion_promise: null (the "20 READY TO MERGE" becomes prompt text)
+
+✅ CORRECT: `/wiggum-loop "Fix bugs" --max-iterations 20 --completion-promise "READY TO MERGE"`
+→ This properly sets max_iterations: 20, completion_promise: "READY TO MERGE"
+
 ### Examples
 
 User: "Wiggum adding tests until they all pass"
