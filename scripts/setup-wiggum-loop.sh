@@ -101,6 +101,18 @@ HELP_EOF
       COMPLETION_PROMISE="$2"
       shift 2
       ;;
+    -*)
+      # Unknown flag - reject it
+      echo "Error: Unknown option: $1" >&2
+      echo "" >&2
+      echo "   Valid options:" >&2
+      echo "     --max-iterations <n>    Maximum iterations before auto-stop" >&2
+      echo "     --completion-promise    Promise phrase to detect completion" >&2
+      echo "     -h, --help              Show help message" >&2
+      echo "" >&2
+      echo "   For full usage: /wiggum-loop --help" >&2
+      exit 1
+      ;;
     *)
       # Non-option argument - collect all as prompt parts
       PROMPT_PARTS+=("$1")
