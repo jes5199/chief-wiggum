@@ -155,21 +155,33 @@ TEMP_FILE="${WIGGUM_STATE_FILE}.tmp.$$"
 sed "s/^iteration: .*/iteration: $NEXT_ITERATION/" "$WIGGUM_STATE_FILE" > "$TEMP_FILE"
 mv "$TEMP_FILE" "$WIGGUM_STATE_FILE"
 
-# Build system message with iteration count and completion promise info
+# Build iteration context for Claude (injected into reason since systemMessage isn't visible to Claude)
 if [[ "$COMPLETION_PROMISE" != "null" ]] && [[ -n "$COMPLETION_PROMISE" ]]; then
+  if [[ $MAX_ITERATIONS -gt 0 ]]; then
+    ITERATION_CONTEXT="[Wiggum loop iteration $NEXT_ITERATION/$MAX_ITERATIONS | Complete by outputting: <promise>$COMPLETION_PROMISE</promise>]"
+  else
+    ITERATION_CONTEXT="[Wiggum loop iteration $NEXT_ITERATION | Complete by outputting: <promise>$COMPLETION_PROMISE</promise>]"
+  fi
   SYSTEM_MSG="Wiggum iteration $NEXT_ITERATION | To stop: output <promise>$COMPLETION_PROMISE</promise> (ONLY when statement is TRUE - do not lie to exit!)"
 else
+  if [[ $MAX_ITERATIONS -gt 0 ]]; then
+    ITERATION_CONTEXT="[Wiggum loop iteration $NEXT_ITERATION/$MAX_ITERATIONS | No completion promise - runs until max iterations]"
+  else
+    ITERATION_CONTEXT="[Wiggum loop iteration $NEXT_ITERATION | No completion promise - runs infinitely]"
+  fi
   SYSTEM_MSG="Wiggum iteration $NEXT_ITERATION | No completion promise set - loop runs infinitely"
 fi
 
 # Output JSON to block the stop and feed prompt back
 # The "reason" field contains the prompt that will be sent back to Claude
+# We prepend ITERATION_CONTEXT since systemMessage isn't visible to Claude
 jq -n \
+  --arg context "$ITERATION_CONTEXT" \
   --arg prompt "$PROMPT_TEXT" \
   --arg msg "$SYSTEM_MSG" \
   '{
     "decision": "block",
-    "reason": $prompt,
+    "reason": ($context + "\n\n" + $prompt),
     "systemMessage": $msg
   }'
 

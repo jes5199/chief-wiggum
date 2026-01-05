@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "chief-wiggum",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Self-referential AI development loops - iterate until completion",
   "owner": {
     "name": "Jes",
@@ -11,7 +11,7 @@
     {
       "name": "chief-wiggum",
       "description": "Implementation of the Ralph Wiggum technique - continuous self-referential AI loops for iterative development",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./",
       "category": "productivity"
     }

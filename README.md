@@ -14,6 +14,10 @@ Includes fixes from [PR #12642](https://github.com/anthropics/claude-code/pull/1
 - Slash commands failed due to multi-line bash being blocked by security checks
 - Permission check bug with ` ```! ` auto-execute syntax
 
+Additional fixes in v1.1.0:
+- Flag-like values (e.g. `--completion-promise --iterations`) now rejected with helpful error messages instead of silently misinterpreting arguments
+- Iteration context now injected into the prompt Claude sees (workaround for Claude Code's `systemMessage` not being visible to the AI)
+
 Also adds clearer documentation that completion promises must be wrapped in `<promise>` XML tags.
 
 ### 2. Natural Language Invocation

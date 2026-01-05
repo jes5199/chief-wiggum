@@ -70,6 +70,17 @@ HELP_EOF
         echo "   You provided: --max-iterations (with no number)" >&2
         exit 1
       fi
+      if [[ "$2" == --* ]]; then
+        echo "Error: --max-iterations value looks like a flag: $2" >&2
+        echo "" >&2
+        echo "   You provided: --max-iterations $2" >&2
+        echo "   Did you mean to pass a number before the next flag?" >&2
+        echo "" >&2
+        echo "   Valid examples:" >&2
+        echo "     --max-iterations 10 $2 ..." >&2
+        echo "     $2 ... --max-iterations 10" >&2
+        exit 1
+      fi
       if ! [[ "$2" =~ ^[0-9]+$ ]]; then
         echo "Error: --max-iterations must be a positive integer or 0, got: $2" >&2
         echo "" >&2
@@ -96,6 +107,17 @@ HELP_EOF
         echo "   You provided: --completion-promise (with no text)" >&2
         echo "" >&2
         echo "   Note: Multi-word promises must be quoted!" >&2
+        exit 1
+      fi
+      if [[ "$2" == --* ]]; then
+        echo "Error: --completion-promise value looks like a flag: $2" >&2
+        echo "" >&2
+        echo "   You provided: --completion-promise $2" >&2
+        echo "   Did you forget to specify the promise text?" >&2
+        echo "" >&2
+        echo "   Valid examples:" >&2
+        echo "     --completion-promise 'DONE' $2 ..." >&2
+        echo "     $2 ... --completion-promise 'TASK COMPLETE'" >&2
         exit 1
       fi
       COMPLETION_PROMISE="$2"
